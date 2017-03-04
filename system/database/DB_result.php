@@ -155,6 +155,15 @@ class CI_DB_result {
 	 */
 	public function result($type = 'object')
 	{
+		/**
+		Note: this will remove the following error, permanently;
+		Fatal error: Class '' not found in
+		Which occurs passing empty string to $query->result(''); method of datbase class;
+		More Details regarding error can be found at here:
+		http://mistersuraj.com/php-mysql/codeigniter/fatal-error-class-not-found-codeigniter/
+		*/
+		if(empty($type)){ $type = 'object'; } 
+		
 		if ($type === 'array')
 		{
 			return $this->result_array();
